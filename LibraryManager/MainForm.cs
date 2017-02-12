@@ -97,7 +97,7 @@ namespace LibraryManager
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
 
-                MessageBox.Show("Book was updated");
+                MessageBox.Show($"Book {book.Title} was updated");
             }
         }
 
@@ -115,7 +115,7 @@ namespace LibraryManager
                 db.Books.Remove(book);
                 db.SaveChanges();
 
-                MessageBox.Show("Book was deleted");
+                MessageBox.Show($"Book {book.Title} was deleted");
             }
         }
 
@@ -178,7 +178,7 @@ namespace LibraryManager
                 db.Entry(author).State = EntityState.Modified;
                 db.SaveChanges();
 
-                MessageBox.Show("Author was updated");
+                MessageBox.Show($"Author {author.FullName} was updated");
             }
         }
 
@@ -196,7 +196,7 @@ namespace LibraryManager
                 db.Authors.Remove(author);
                 db.SaveChanges();
 
-                MessageBox.Show("Author was deleted");
+                MessageBox.Show($"Author {author.FullName} was deleted");
             }
         }
     }
