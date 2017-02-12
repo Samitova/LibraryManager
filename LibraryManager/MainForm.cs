@@ -34,6 +34,8 @@ namespace LibraryManager
             bookForm.comboBoxAuthor.ValueMember = "Id";
             bookForm.comboBoxAuthor.DisplayMember = "FullName";
 
+            bookForm.comboBoxGenre.DataSource = Enum.GetNames(typeof(BookGenre));
+
             DialogResult result = bookForm.ShowDialog(this);
 
             if (result == DialogResult.Cancel)
@@ -42,6 +44,7 @@ namespace LibraryManager
             Book book = new Book();
             book.Title = bookForm.textBoxTitle.Text;
             book.Author = (Author)bookForm.comboBoxAuthor.SelectedItem;
+            book.Genre = (BookGenre)Enum.Parse(typeof(BookGenre), bookForm.comboBoxGenre.SelectedValue.ToString()); 
 
             int publishingDate = 0;
             if (int.TryParse(bookForm.textBoxPublishing.Text, out publishingDate))
@@ -70,9 +73,11 @@ namespace LibraryManager
                 BookForm bookForm = new BookForm();
                 bookForm.textBoxTitle.Text = book.Title;
                 bookForm.textBoxPublishing.Text = book.PublishingDate.ToString();
-                
 
-                List<Author> authors = db.Authors.ToList();
+                bookForm.comboBoxGenre.DataSource = Enum.GetNames(typeof(BookGenre));
+                bookForm.comboBoxGenre.SelectedIndex = (int)book.Genre;
+
+                List <Author> authors = db.Authors.ToList();
                 bookForm.comboBoxAuthor.DataSource = authors;
                 bookForm.comboBoxAuthor.ValueMember = "Id";
                 bookForm.comboBoxAuthor.DisplayMember = "FullName";
@@ -87,6 +92,7 @@ namespace LibraryManager
 
                 book.Title = bookForm.textBoxTitle.Text;
                 book.Author = (Author)bookForm.comboBoxAuthor.SelectedItem;
+                book.Genre = (BookGenre)Enum.Parse(typeof(BookGenre), bookForm.comboBoxGenre.SelectedValue.ToString());
 
                 int publishingDate = 0;
                 if (int.TryParse(bookForm.textBoxPublishing.Text, out publishingDate))
@@ -97,7 +103,7 @@ namespace LibraryManager
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
 
-                MessageBox.Show($"Book {book.Title} was updated");
+                MessageBox.Show($"Book \"{book.Title}\" was updated");
             }
         }
 
@@ -115,7 +121,7 @@ namespace LibraryManager
                 db.Books.Remove(book);
                 db.SaveChanges();
 
-                MessageBox.Show($"Book {book.Title} was deleted");
+                MessageBox.Show($"Book \"{book.Title}\" was deleted");
             }
         }
 

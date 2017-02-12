@@ -21,16 +21,16 @@ namespace LibraryManager
 
             db.SaveChanges();
 
-            Book b1 = new Book { Title = "Mistary", PublishingDate = 2001, Author=a1 };
-            Book b2 = new Book { Title = "Animal timming", PublishingDate = 2002, Author = a1 };
-            Book b3 = new Book { Title = "Bald man", PublishingDate = 2005, Author = a1 };
-            Book b4 = new Book { Title = "Dull day", PublishingDate = 1860, Author = a2 };
-            Book b5 = new Book { Title = "Old man", PublishingDate = 1865, Author = a2 };
-            Book b6 = new Book { Title = "Little dog", PublishingDate = 1964, Author = a2 };
-            Book b7 = new Book { Title = "Treasure", PublishingDate = 1988, Author = a3 };
-            Book b8 = new Book { Title = "Black rose", PublishingDate = 1984, Author = a3 };
-            Book b9 = new Book { Title = "Wild life", PublishingDate = 1985, Author = a3 };
-            Book b10 = new Book { Title = "Come back", PublishingDate = 1990, Author = a3 };
+            Book b1 = new Book { Title = "Mistary", Genre = BookGenre.Advanture, PublishingDate = 2001, Author=a1 };
+            Book b2 = new Book { Title = "Animal timming", Genre = BookGenre.Sciense, PublishingDate = 2002, Author = a1 };
+            Book b3 = new Book { Title = "Bald man", Genre = BookGenre.Advanture, PublishingDate = 2005, Author = a1 };
+            Book b4 = new Book { Title = "Dull day", Genre = BookGenre.History,  PublishingDate = 1860, Author = a2 };
+            Book b5 = new Book { Title = "Old man", Genre = BookGenre.History, PublishingDate = 1865, Author = a2 };
+            Book b6 = new Book { Title = "Little dog", Genre = BookGenre.Advanture, PublishingDate = 1964, Author = a2 };
+            Book b7 = new Book { Title = "Treasure", Genre = BookGenre.Love, PublishingDate = 1988, Author = a3 };
+            Book b8 = new Book { Title = "Black rose", Genre = BookGenre.Love, PublishingDate = 1984, Author = a3 };
+            Book b9 = new Book { Title = "Wild life", Genre = BookGenre.Fantasy, PublishingDate = 1985, Author = a3 };
+            Book b10 = new Book { Title = "Come back", Genre = BookGenre.Love, PublishingDate = 1990, Author = a3 };
            
 
             db.Books.AddRange(new List<Book>() { b1, b2, b3, b4, b5, b6, b7, b8, b9, b10});

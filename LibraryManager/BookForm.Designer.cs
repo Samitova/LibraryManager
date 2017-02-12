@@ -37,11 +37,15 @@
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.comboBoxAuthor = new System.Windows.Forms.ComboBox();
             this.textBoxPublishing = new System.Windows.Forms.TextBox();
+            this.labelBookGenre = new System.Windows.Forms.Label();
+            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.groupBoxBook.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxBook
             // 
+            this.groupBoxBook.Controls.Add(this.labelBookGenre);
+            this.groupBoxBook.Controls.Add(this.comboBoxGenre);
             this.groupBoxBook.Controls.Add(this.textBoxPublishing);
             this.groupBoxBook.Controls.Add(this.btnCancel);
             this.groupBoxBook.Controls.Add(this.labelTeam);
@@ -53,7 +57,7 @@
             this.groupBoxBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.groupBoxBook.Location = new System.Drawing.Point(12, 12);
             this.groupBoxBook.Name = "groupBoxBook";
-            this.groupBoxBook.Size = new System.Drawing.Size(331, 238);
+            this.groupBoxBook.Size = new System.Drawing.Size(353, 275);
             this.groupBoxBook.TabIndex = 11;
             this.groupBoxBook.TabStop = false;
             this.groupBoxBook.Text = "Book";
@@ -61,7 +65,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(236, 193);
+            this.btnCancel.Location = new System.Drawing.Point(236, 233);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -72,7 +76,7 @@
             // 
             this.labelTeam.AutoSize = true;
             this.labelTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.labelTeam.Location = new System.Drawing.Point(16, 140);
+            this.labelTeam.Location = new System.Drawing.Point(16, 180);
             this.labelTeam.Name = "labelTeam";
             this.labelTeam.Size = new System.Drawing.Size(110, 18);
             this.labelTeam.TabIndex = 8;
@@ -101,7 +105,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(139, 193);
+            this.btnOK.Location = new System.Drawing.Point(139, 233);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
@@ -125,16 +129,34 @@
             // 
             // textBoxPublishing
             // 
-            this.textBoxPublishing.Location = new System.Drawing.Point(139, 134);
+            this.textBoxPublishing.Location = new System.Drawing.Point(139, 174);
             this.textBoxPublishing.Name = "textBoxPublishing";
             this.textBoxPublishing.Size = new System.Drawing.Size(172, 24);
             this.textBoxPublishing.TabIndex = 9;
+            // 
+            // labelBookGenre
+            // 
+            this.labelBookGenre.AutoSize = true;
+            this.labelBookGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.labelBookGenre.Location = new System.Drawing.Point(16, 132);
+            this.labelBookGenre.Name = "labelBookGenre";
+            this.labelBookGenre.Size = new System.Drawing.Size(49, 18);
+            this.labelBookGenre.TabIndex = 10;
+            this.labelBookGenre.Text = "Genre";
+            // 
+            // comboBoxGenre
+            // 
+            this.comboBoxGenre.FormattingEnabled = true;
+            this.comboBoxGenre.Location = new System.Drawing.Point(139, 124);
+            this.comboBoxGenre.Name = "comboBoxGenre";
+            this.comboBoxGenre.Size = new System.Drawing.Size(172, 26);
+            this.comboBoxGenre.TabIndex = 11;
             // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 264);
+            this.ClientSize = new System.Drawing.Size(396, 325);
             this.Controls.Add(this.groupBoxBook);
             this.Name = "BookForm";
             this.Text = "BookForm";
@@ -155,5 +177,7 @@
         protected internal System.Windows.Forms.TextBox textBoxTitle;
         protected internal System.Windows.Forms.ComboBox comboBoxAuthor;
         protected internal System.Windows.Forms.TextBox textBoxPublishing;
+        private System.Windows.Forms.Label labelBookGenre;
+        protected internal System.Windows.Forms.ComboBox comboBoxGenre;
     }
 }
