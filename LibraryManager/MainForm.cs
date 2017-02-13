@@ -14,6 +14,7 @@ namespace LibraryManager
     public partial class MainForm : Form
     {
         LibraryContext db;
+        List<Book> _searchedBooks = new List<Book>();
 
         public MainForm()
         {
@@ -27,14 +28,7 @@ namespace LibraryManager
 
         private void btnBookAdd_Click(object sender, EventArgs e)
         {
-            BookForm bookForm = new BookForm();
-
-            List<Author> authors = db.Authors.ToList();
-            bookForm.comboBoxAuthor.DataSource = authors;
-            bookForm.comboBoxAuthor.ValueMember = "Id";
-            bookForm.comboBoxAuthor.DisplayMember = "FullName";
-
-            bookForm.comboBoxGenre.DataSource = Enum.GetNames(typeof(BookGenre));
+            BookForm bookForm = new BookForm(db);
 
             DialogResult result = bookForm.ShowDialog(this);
 
@@ -44,13 +38,13 @@ namespace LibraryManager
             Book book = new Book();
             book.Title = bookForm.textBoxTitle.Text;
             book.Author = (Author)bookForm.comboBoxAuthor.SelectedItem;
-            book.Genre = (BookGenre)Enum.Parse(typeof(BookGenre), bookForm.comboBoxGenre.SelectedValue.ToString()); 
+            book.Genre = (BookGenre)Enum.Parse(typeof(BookGenre), bookForm.comboBoxGenre.SelectedValue.ToString());
 
             int publishingDate = 0;
             if (int.TryParse(bookForm.textBoxPublishing.Text, out publishingDate))
                 book.PublishingDate = publishingDate;
             else
-                MessageBox.Show("Incorrect Publishing date");           
+                MessageBox.Show("Incorrect Publishing date");
 
             db.Books.Add(book);
             db.SaveChanges();
@@ -70,17 +64,11 @@ namespace LibraryManager
 
                 Book book = db.Books.Find(id);
 
-                BookForm bookForm = new BookForm();
+                BookForm bookForm = new BookForm(db);
                 bookForm.textBoxTitle.Text = book.Title;
                 bookForm.textBoxPublishing.Text = book.PublishingDate.ToString();
 
-                bookForm.comboBoxGenre.DataSource = Enum.GetNames(typeof(BookGenre));
                 bookForm.comboBoxGenre.SelectedIndex = (int)book.Genre;
-
-                List <Author> authors = db.Authors.ToList();
-                bookForm.comboBoxAuthor.DataSource = authors;
-                bookForm.comboBoxAuthor.ValueMember = "Id";
-                bookForm.comboBoxAuthor.DisplayMember = "FullName";
 
                 if (book.Author != null)
                     bookForm.comboBoxAuthor.SelectedValue = book.Author.Id;
@@ -120,6 +108,12 @@ namespace LibraryManager
                 Book book = db.Books.Find(id);
                 db.Books.Remove(book);
                 db.SaveChanges();
+
+               
+                if (_searchedBooks.Find(b => b.Id == id) != null)
+                    _searchedBooks.Remove(book);
+
+                dataGridViewBooks.Update();
 
                 MessageBox.Show($"Book \"{book.Title}\" was deleted");
             }
@@ -200,10 +194,53 @@ namespace LibraryManager
 
                 Author author = db.Authors.Find(id);
                 db.Authors.Remove(author);
-                db.SaveChanges();
+                db.SaveChanges();             
 
                 MessageBox.Show($"Author {author.FullName} was deleted");
             }
+        }
+
+        private void btnBookSearch_Click(object sender, EventArgs e)
+        {
+            BookSearchForm bookSearchForm = new BookSearchForm();
+
+            DialogResult result = bookSearchForm.ShowDialog(this);
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            _searchedBooks.Clear();
+
+            IQueryable<Book> bookIQuer = db.Books;
+            if (!string.IsNullOrWhiteSpace(bookSearchForm.textBoxSearchTitle.Text))
+                bookIQuer = bookIQuer.Where(p => p.Title.Contains(bookSearchForm.textBoxSearchTitle.Text));
+
+            if (!string.IsNullOrWhiteSpace(bookSearchForm.textBoxSearchAuthor.Text))
+                bookIQuer = bookIQuer.Where(p => p.Author.FirstName.Contains(bookSearchForm.textBoxSearchAuthor.Text) ||
+                    p.Author.SecondName.Contains(bookSearchForm.textBoxSearchAuthor.Text));
+
+            int year = 0;
+            if (!string.IsNullOrWhiteSpace(bookSearchForm.textBoxSearchPublishing.Text)
+                && int.TryParse(bookSearchForm.textBoxSearchPublishing.Text, out year))
+                bookIQuer = bookIQuer.Where(p => p.PublishingDate == year);
+
+            if (bookSearchForm.checkedListBoxSearchGenre.CheckedItems.Count > 0)
+            {
+                foreach (var item in bookSearchForm.checkedListBoxSearchGenre.CheckedItems)
+                {
+                    BookGenre genre = (BookGenre)Enum.Parse(typeof(BookGenre), item.ToString());
+                    _searchedBooks.AddRange(bookIQuer.Where(p => p.Genre == genre).ToList<Book>());
+                }
+            }
+            else
+                _searchedBooks.AddRange(bookIQuer.ToList<Book>());
+
+            dataGridViewBooks.DataSource = _searchedBooks;
+        }
+
+        private void btnAllBooks_Click(object sender, EventArgs e)
+        {
+            dataGridViewBooks.DataSource = db.Books.Local.ToBindingList();
         }
     }
 }

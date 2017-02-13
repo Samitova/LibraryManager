@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageBooks = new System.Windows.Forms.TabPage();
-            this.tabPageAuthors = new System.Windows.Forms.TabPage();
             this.btnBookSearch = new System.Windows.Forms.Button();
             this.btnBookDelete = new System.Windows.Forms.Button();
             this.btnBookChange = new System.Windows.Forms.Button();
             this.btnBookAdd = new System.Windows.Forms.Button();
             this.dataGridViewBooks = new System.Windows.Forms.DataGridView();
+            this.tabPageAuthors = new System.Windows.Forms.TabPage();
             this.btnAuthorSearch = new System.Windows.Forms.Button();
             this.btnAuthorDelete = new System.Windows.Forms.Button();
             this.btnAuthorChange = new System.Windows.Forms.Button();
@@ -45,19 +45,20 @@
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publishingDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publishingDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAllBooks = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageBooks.SuspendLayout();
-            this.tabPageAuthors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
+            this.tabPageAuthors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).BeginInit();
@@ -76,6 +77,7 @@
             // 
             // tabPageBooks
             // 
+            this.tabPageBooks.Controls.Add(this.btnAllBooks);
             this.tabPageBooks.Controls.Add(this.btnBookSearch);
             this.tabPageBooks.Controls.Add(this.btnBookDelete);
             this.tabPageBooks.Controls.Add(this.btnBookChange);
@@ -89,33 +91,19 @@
             this.tabPageBooks.Text = "Books";
             this.tabPageBooks.UseVisualStyleBackColor = true;
             // 
-            // tabPageAuthors
-            // 
-            this.tabPageAuthors.Controls.Add(this.btnAuthorSearch);
-            this.tabPageAuthors.Controls.Add(this.btnAuthorDelete);
-            this.tabPageAuthors.Controls.Add(this.btnAuthorChange);
-            this.tabPageAuthors.Controls.Add(this.btnAuthorAdd);
-            this.tabPageAuthors.Controls.Add(this.dataGridViewAuthors);
-            this.tabPageAuthors.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAuthors.Name = "tabPageAuthors";
-            this.tabPageAuthors.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAuthors.Size = new System.Drawing.Size(622, 406);
-            this.tabPageAuthors.TabIndex = 1;
-            this.tabPageAuthors.Text = "Authors";
-            this.tabPageAuthors.UseVisualStyleBackColor = true;
-            // 
             // btnBookSearch
             // 
-            this.btnBookSearch.Location = new System.Drawing.Point(587, 144);
+            this.btnBookSearch.Location = new System.Drawing.Point(587, 180);
             this.btnBookSearch.Name = "btnBookSearch";
             this.btnBookSearch.Size = new System.Drawing.Size(75, 23);
             this.btnBookSearch.TabIndex = 10;
             this.btnBookSearch.Text = "Search";
             this.btnBookSearch.UseVisualStyleBackColor = true;
+            this.btnBookSearch.Click += new System.EventHandler(this.btnBookSearch_Click);
             // 
             // btnBookDelete
             // 
-            this.btnBookDelete.Location = new System.Drawing.Point(587, 100);
+            this.btnBookDelete.Location = new System.Drawing.Point(587, 136);
             this.btnBookDelete.Name = "btnBookDelete";
             this.btnBookDelete.Size = new System.Drawing.Size(75, 23);
             this.btnBookDelete.TabIndex = 9;
@@ -125,7 +113,7 @@
             // 
             // btnBookChange
             // 
-            this.btnBookChange.Location = new System.Drawing.Point(587, 57);
+            this.btnBookChange.Location = new System.Drawing.Point(587, 93);
             this.btnBookChange.Name = "btnBookChange";
             this.btnBookChange.Size = new System.Drawing.Size(75, 23);
             this.btnBookChange.TabIndex = 8;
@@ -135,7 +123,7 @@
             // 
             // btnBookAdd
             // 
-            this.btnBookAdd.Location = new System.Drawing.Point(587, 15);
+            this.btnBookAdd.Location = new System.Drawing.Point(587, 51);
             this.btnBookAdd.Name = "btnBookAdd";
             this.btnBookAdd.Size = new System.Drawing.Size(75, 23);
             this.btnBookAdd.TabIndex = 7;
@@ -152,15 +140,30 @@
             this.dataGridViewBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.titleDataGridViewTextBoxColumn,
-            this.authorDataGridViewTextBoxColumn,
-            this.Genre,
-            this.publishingDateDataGridViewTextBoxColumn});
+            this.genreDataGridViewTextBoxColumn,
+            this.publishingDateDataGridViewTextBoxColumn,
+            this.authorDataGridViewTextBoxColumn});
             this.dataGridViewBooks.DataSource = this.bookBindingSource;
             this.dataGridViewBooks.Location = new System.Drawing.Point(10, 11);
             this.dataGridViewBooks.Name = "dataGridViewBooks";
             this.dataGridViewBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBooks.Size = new System.Drawing.Size(546, 357);
             this.dataGridViewBooks.TabIndex = 6;
+            // 
+            // tabPageAuthors
+            // 
+            this.tabPageAuthors.Controls.Add(this.btnAuthorSearch);
+            this.tabPageAuthors.Controls.Add(this.btnAuthorDelete);
+            this.tabPageAuthors.Controls.Add(this.btnAuthorChange);
+            this.tabPageAuthors.Controls.Add(this.btnAuthorAdd);
+            this.tabPageAuthors.Controls.Add(this.dataGridViewAuthors);
+            this.tabPageAuthors.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAuthors.Name = "tabPageAuthors";
+            this.tabPageAuthors.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAuthors.Size = new System.Drawing.Size(692, 406);
+            this.tabPageAuthors.TabIndex = 1;
+            this.tabPageAuthors.Text = "Authors";
+            this.tabPageAuthors.UseVisualStyleBackColor = true;
             // 
             // btnAuthorSearch
             // 
@@ -238,6 +241,36 @@
             this.BirthDate.HeaderText = "BirthDate";
             this.BirthDate.Name = "BirthDate";
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            // 
+            // genreDataGridViewTextBoxColumn
+            // 
+            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
+            this.genreDataGridViewTextBoxColumn.HeaderText = "Genre";
+            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
+            // 
+            // publishingDateDataGridViewTextBoxColumn
+            // 
+            this.publishingDateDataGridViewTextBoxColumn.DataPropertyName = "PublishingDate";
+            this.publishingDateDataGridViewTextBoxColumn.HeaderText = "PublishingDate";
+            this.publishingDateDataGridViewTextBoxColumn.Name = "publishingDateDataGridViewTextBoxColumn";
+            // 
+            // authorDataGridViewTextBoxColumn
+            // 
+            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
+            this.authorDataGridViewTextBoxColumn.HeaderText = "Author";
+            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
+            // 
             // bookBindingSource
             // 
             this.bookBindingSource.DataSource = typeof(LibraryManager.Book);
@@ -256,35 +289,15 @@
             // 
             this.bookBindingSource1.DataSource = typeof(LibraryManager.Book);
             // 
-            // idDataGridViewTextBoxColumn
+            // btnAllBooks
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            // 
-            // authorDataGridViewTextBoxColumn
-            // 
-            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
-            this.authorDataGridViewTextBoxColumn.HeaderText = "Author";
-            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
-            // 
-            // Genre
-            // 
-            this.Genre.DataPropertyName = "Genre";
-            this.Genre.HeaderText = "Genre";
-            this.Genre.Name = "Genre";
-            // 
-            // publishingDateDataGridViewTextBoxColumn
-            // 
-            this.publishingDateDataGridViewTextBoxColumn.DataPropertyName = "PublishingDate";
-            this.publishingDateDataGridViewTextBoxColumn.HeaderText = "PublishingDate";
-            this.publishingDateDataGridViewTextBoxColumn.Name = "publishingDateDataGridViewTextBoxColumn";
+            this.btnAllBooks.Location = new System.Drawing.Point(587, 11);
+            this.btnAllBooks.Name = "btnAllBooks";
+            this.btnAllBooks.Size = new System.Drawing.Size(75, 23);
+            this.btnAllBooks.TabIndex = 11;
+            this.btnAllBooks.Text = "All Books";
+            this.btnAllBooks.UseVisualStyleBackColor = true;
+            this.btnAllBooks.Click += new System.EventHandler(this.btnAllBooks_Click);
             // 
             // MainForm
             // 
@@ -296,8 +309,8 @@
             this.Text = "Library manager";
             this.tabControl1.ResumeLayout(false);
             this.tabPageBooks.ResumeLayout(false);
-            this.tabPageAuthors.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).EndInit();
+            this.tabPageAuthors.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).EndInit();
@@ -329,9 +342,10 @@
         private System.Windows.Forms.BindingSource authorBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn publishingDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnAllBooks;
     }
 }
 
