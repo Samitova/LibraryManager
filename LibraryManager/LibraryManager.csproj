@@ -62,6 +62,12 @@
     <Compile Include="AuthorForm.Designer.cs">
       <DependentUpon>AuthorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorSearchForm.Designer.cs">
+      <DependentUpon>AuthorSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book.cs" />
     <Compile Include="BookForm.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AuthorForm.resx">
       <DependentUpon>AuthorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorSearchForm.resx">
+      <DependentUpon>AuthorSearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>

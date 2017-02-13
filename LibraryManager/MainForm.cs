@@ -15,6 +15,7 @@ namespace LibraryManager
     {
         LibraryContext db;
         List<Book> _searchedBooks = new List<Book>();
+        List<Author> _searchedAuthors = new List<Author>();
 
         public MainForm()
         {
@@ -48,6 +49,11 @@ namespace LibraryManager
 
             db.Books.Add(book);
             db.SaveChanges();
+
+            _searchedBooks.Add(book);
+
+            bindingSourceSearch.DataSource = null;
+            bindingSourceSearch.DataSource = _searchedBooks;
 
             MessageBox.Show("New book was added");
         }
@@ -109,11 +115,13 @@ namespace LibraryManager
                 db.Books.Remove(book);
                 db.SaveChanges();
 
-               
+
+                // delete book from search result
                 if (_searchedBooks.Find(b => b.Id == id) != null)
                     _searchedBooks.Remove(book);
 
-                dataGridViewBooks.Update();
+                bindingSourceSearch.DataSource = null;
+                bindingSourceSearch.DataSource = _searchedBooks;
 
                 MessageBox.Show($"Book \"{book.Title}\" was deleted");
             }
@@ -234,8 +242,9 @@ namespace LibraryManager
             }
             else
                 _searchedBooks.AddRange(bookIQuer.ToList<Book>());
-
-            dataGridViewBooks.DataSource = _searchedBooks;
+           
+            bindingSourceSearch.DataSource = _searchedBooks;
+            dataGridViewBooks.DataSource = bindingSourceSearch;
         }
 
         private void btnAllBooks_Click(object sender, EventArgs e)
