@@ -1,11 +1,12 @@
-﻿using System;
+﻿using LibraryManager;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManager
+namespace ClientManager
 {
     class LibraryContextInitializer : DropCreateDatabaseAlways<LibraryContext>
     {
@@ -21,7 +22,7 @@ namespace LibraryManager
 
             db.SaveChanges();
 
-            Client c1 = new Client { FirstName = "Vika", SecondName = "Trot", Login="Vika", Password="12345"};
+            Client c1 = new Client { FirstName = "Vika", SecondName = "Trot", Login = "Vika", Password = "12345" };
             Client c2 = new Client { FirstName = "Stan", SecondName = "Rolaz", Login = "Stan", Password = "12345" };
             Client c3 = new Client { FirstName = "Mash", SecondName = "Kraw", Login = "M", Password = "12345" };
 
@@ -33,12 +34,12 @@ namespace LibraryManager
 
             Book b1 = new Book { Title = "Mistary come", Genre = BookGenre.Advanture, PublishingDate = 2001, Author=a1};
             Book b2 = new Book { Title = "Animal timming", Genre = BookGenre.Sciense, PublishingDate = 2002, Author = a1 };
-            Book b3 = new Book { Title = "Bald man", Genre = BookGenre.Advanture, PublishingDate = 2005, Author = a1 };
+            Book b3 = new Book { Title = "Bald man", Genre = BookGenre.Advanture, PublishingDate = 2005, Author = a1};
             Book b4 = new Book { Title = "Dull day", Genre = BookGenre.History,  PublishingDate = 1860, Author = a2 };
-            Book b5 = new Book { Title = "Old man", Genre = BookGenre.History, PublishingDate = 1865, Author = a2 };
+            Book b5 = new Book { Title = "Old man", Genre = BookGenre.History, PublishingDate = 1865, Author = a2};
             Book b6 = new Book { Title = "Little dog", Genre = BookGenre.Advanture, PublishingDate = 1964, Author = a2 };
             Book b7 = new Book { Title = "Treasure", Genre = BookGenre.Love, PublishingDate = 1988, Author = a3};
-            Book b8 = new Book { Title = "Black rose", Genre = BookGenre.Advanture, PublishingDate = 1984, Author = a3 };
+            Book b8 = new Book { Title = "Black rose", Genre = BookGenre.Advanture, PublishingDate = 1984, Author = a3};
             Book b9 = new Book { Title = "Wild life", Genre = BookGenre.Fantasy, PublishingDate = 1985, Author = a3};
             Book b10 = new Book { Title = "Come back", Genre = BookGenre.Love, PublishingDate = 1990, Author = a3 };
            

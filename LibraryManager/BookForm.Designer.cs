@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxBook = new System.Windows.Forms.GroupBox();
+            this.labelBookGenre = new System.Windows.Forms.Label();
+            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
+            this.textBoxPublishing = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.labelTeam = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -36,9 +39,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.comboBoxAuthor = new System.Windows.Forms.ComboBox();
-            this.textBoxPublishing = new System.Windows.Forms.TextBox();
-            this.labelBookGenre = new System.Windows.Forms.Label();
-            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.groupBoxBook.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,31 @@
             this.groupBoxBook.Size = new System.Drawing.Size(353, 275);
             this.groupBoxBook.TabIndex = 11;
             this.groupBoxBook.TabStop = false;
-            this.groupBoxBook.Text = "Book";
+            // 
+            // labelBookGenre
+            // 
+            this.labelBookGenre.AutoSize = true;
+            this.labelBookGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.labelBookGenre.Location = new System.Drawing.Point(16, 132);
+            this.labelBookGenre.Name = "labelBookGenre";
+            this.labelBookGenre.Size = new System.Drawing.Size(49, 18);
+            this.labelBookGenre.TabIndex = 10;
+            this.labelBookGenre.Text = "Genre";
+            // 
+            // comboBoxGenre
+            // 
+            this.comboBoxGenre.FormattingEnabled = true;
+            this.comboBoxGenre.Location = new System.Drawing.Point(139, 124);
+            this.comboBoxGenre.Name = "comboBoxGenre";
+            this.comboBoxGenre.Size = new System.Drawing.Size(172, 26);
+            this.comboBoxGenre.TabIndex = 11;
+            // 
+            // textBoxPublishing
+            // 
+            this.textBoxPublishing.Location = new System.Drawing.Point(139, 174);
+            this.textBoxPublishing.Name = "textBoxPublishing";
+            this.textBoxPublishing.Size = new System.Drawing.Size(172, 24);
+            this.textBoxPublishing.TabIndex = 9;
             // 
             // btnCancel
             // 
@@ -71,6 +95,7 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // labelTeam
             // 
@@ -111,6 +136,7 @@
             this.btnOK.TabIndex = 6;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // textBoxTitle
             // 
@@ -127,31 +153,6 @@
             this.comboBoxAuthor.Size = new System.Drawing.Size(172, 26);
             this.comboBoxAuthor.TabIndex = 4;
             // 
-            // textBoxPublishing
-            // 
-            this.textBoxPublishing.Location = new System.Drawing.Point(139, 174);
-            this.textBoxPublishing.Name = "textBoxPublishing";
-            this.textBoxPublishing.Size = new System.Drawing.Size(172, 24);
-            this.textBoxPublishing.TabIndex = 9;
-            // 
-            // labelBookGenre
-            // 
-            this.labelBookGenre.AutoSize = true;
-            this.labelBookGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.labelBookGenre.Location = new System.Drawing.Point(16, 132);
-            this.labelBookGenre.Name = "labelBookGenre";
-            this.labelBookGenre.Size = new System.Drawing.Size(49, 18);
-            this.labelBookGenre.TabIndex = 10;
-            this.labelBookGenre.Text = "Genre";
-            // 
-            // comboBoxGenre
-            // 
-            this.comboBoxGenre.FormattingEnabled = true;
-            this.comboBoxGenre.Location = new System.Drawing.Point(139, 124);
-            this.comboBoxGenre.Name = "comboBoxGenre";
-            this.comboBoxGenre.Size = new System.Drawing.Size(172, 26);
-            this.comboBoxGenre.TabIndex = 11;
-            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,7 +160,8 @@
             this.ClientSize = new System.Drawing.Size(396, 325);
             this.Controls.Add(this.groupBoxBook);
             this.Name = "BookForm";
-            this.Text = "BookForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Book";
             this.groupBoxBook.ResumeLayout(false);
             this.groupBoxBook.PerformLayout();
             this.ResumeLayout(false);

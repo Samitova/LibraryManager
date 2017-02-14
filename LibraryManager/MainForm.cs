@@ -13,54 +13,30 @@ namespace LibraryManager
 {
     public partial class MainForm : Form
     {
-        LibraryContext db;
-        List<Book> _searchedBooks = new List<Book>();
-        List<Author> _searchedAuthors = new List<Author>();
-
+        private LibraryContext _db;
+        public List<Book> SearchedBooks { get; set; }
+        public List<Author> SearchedAuthors { get; set; }
+        
         public MainForm()
         {
             InitializeComponent();
-            db = new LibraryContext();
-            db.Books.Load();
-            db.Authors.Load();
-            dataGridViewBooks.DataSource = db.Books.Local.ToBindingList();
-            dataGridViewAuthors.DataSource = db.Authors.Local.ToBindingList();            
+            _db = new LibraryContext();
+            SearchedBooks = new List<Book>();
+            SearchedAuthors = new List<Author>();
+            _db.Books.Load();
+            _db.Authors.Load();
+            dataGridViewBooks.DataSource = _db.Books.Local.ToBindingList();
+            dataGridViewAuthors.DataSource = _db.Authors.Local.ToBindingList();            
         }
 
         private void btnBookAdd_Click(object sender, EventArgs e)
         {
-            BookForm bookForm = new BookForm(db);
-
-            DialogResult result = bookForm.ShowDialog(this);
-
-            if (result == DialogResult.Cancel)
-                return;
-
-            AddBook(bookForm);
-
-            MessageBox.Show("New book was added");
-        }
-
-        private void AddBook(BookForm bookForm)
-        {
-            Book book = new Book();
-            book.Title = bookForm.textBoxTitle.Text;
-            book.Author = (Author)bookForm.comboBoxAuthor.SelectedItem;
-            book.Genre = (BookGenre)Enum.Parse(typeof(BookGenre), bookForm.comboBoxGenre.SelectedValue.ToString());
-
-            int publishingDate = 0;
-            if (int.TryParse(bookForm.textBoxPublishing.Text, out publishingDate))
-                book.PublishingDate = publishingDate;
-            else
-                MessageBox.Show("Incorrect Publishing date");
-
-            db.Books.Add(book);
-            db.SaveChanges();
-
-            _searchedBooks.Add(book);
+            BookForm bookForm = new BookForm(_db);
+            bookForm.Owner = this;
+            bookForm.Show();
 
             bindingSourceBookSearch.DataSource = null;
-            bindingSourceBookSearch.DataSource = _searchedBooks;
+            bindingSourceBookSearch.DataSource = SearchedBooks;
         }
 
         private void btnBookChange_Click(object sender, EventArgs e)
@@ -73,9 +49,9 @@ namespace LibraryManager
                 if (converted == false)
                     return;
 
-                Book book = db.Books.Find(id);
+                Book book = _db.Books.Find(id);
 
-                BookForm bookForm = new BookForm(db);
+                BookForm bookForm = new BookForm(_db);
                 bookForm.textBoxTitle.Text = book.Title;
                 bookForm.textBoxPublishing.Text = book.PublishingDate.ToString();
 
@@ -95,14 +71,13 @@ namespace LibraryManager
 
                 int publishingDate = 0;
                 if (int.TryParse(bookForm.textBoxPublishing.Text, out publishingDate))
+                {
                     book.PublishingDate = publishingDate;
-                else
-                    MessageBox.Show("Incorrect Publishing date");
+                    _db.Entry(book).State = EntityState.Modified;
+                    _db.SaveChanges();
 
-                db.Entry(book).State = EntityState.Modified;
-                db.SaveChanges();
-
-                MessageBox.Show($"Book \"{book.Title}\" was updated");
+                    MessageBox.Show($"Book \"{book.Title}\" was updated");
+                }                                               
             }
         }
 
@@ -116,16 +91,16 @@ namespace LibraryManager
                 if (converted == false)
                     return;
 
-                Book book = db.Books.Find(id);
-                db.Books.Remove(book);
-                db.SaveChanges();
+                Book book = _db.Books.Find(id);
+                _db.Books.Remove(book);
+                _db.SaveChanges();
 
                 // delete book from search result
-                if (_searchedBooks.Find(b => b.Id == id) != null)
-                    _searchedBooks.Remove(book);
+                if (SearchedBooks.Find(b => b.Id == id) != null)
+                    SearchedBooks.Remove(book);
 
                 bindingSourceBookSearch.DataSource = null;
-                bindingSourceBookSearch.DataSource = _searchedBooks;
+                bindingSourceBookSearch.DataSource = SearchedBooks;
 
                 MessageBox.Show($"Book \"{book.Title}\" was deleted");
             }
@@ -133,39 +108,11 @@ namespace LibraryManager
 
         private void btnAuthorAdd_Click(object sender, EventArgs e)
         {
-            AuthorForm authorForm = new AuthorForm();
-
-            DialogResult result = authorForm.ShowDialog(this);
-
-            if (result == DialogResult.Cancel)
-                return;
-
-            AddAuthor(authorForm);
-
-            MessageBox.Show("New author was added");
+            AuthorForm authorForm = new AuthorForm(_db);           
+            authorForm.Owner = this;
+            authorForm.Show();            
         }
-
-        private void AddAuthor(AuthorForm authorForm)
-        {
-            Author author = new Author();
-            author.FirstName = authorForm.textBoxFirstName.Text;
-            author.SecondName = authorForm.textBoxSecondName.Text;
-
-            DateTime birthDate = DateTime.Now;
-            if (DateTime.TryParse(authorForm.textBoxBirthDate.Text, out birthDate))
-                author.BirthDate = birthDate;
-            else
-                MessageBox.Show("Incorrect Birth date");
-
-            db.Authors.Add(author);
-            db.SaveChanges();
-
-            _searchedAuthors.Add(author);
-
-            bindingSourceAuthorSearch.DataSource = null;
-            bindingSourceAuthorSearch.DataSource = _searchedAuthors;
-        }
-
+     
         private void btnAuthorChange_Click(object sender, EventArgs e)
         {
             if (dataGridViewAuthors.SelectedRows.Count > 0)
@@ -176,9 +123,9 @@ namespace LibraryManager
                 if (converted == false)
                     return;
 
-                Author author = db.Authors.Find(id);
+                Author author = _db.Authors.Find(id);
 
-                AuthorForm authorForm = new AuthorForm();
+                AuthorForm authorForm = new AuthorForm(_db);
                 authorForm.textBoxFirstName.Text = author.FirstName;
                 authorForm.textBoxSecondName.Text = author.SecondName;
                 authorForm.textBoxBirthDate.Text = author.BirthDate.ToString("dd.MM.yyyy");
@@ -193,14 +140,13 @@ namespace LibraryManager
 
                 DateTime birthDate = DateTime.Now;
                 if (DateTime.TryParse(authorForm.textBoxBirthDate.Text, out birthDate))
+                {
                     author.BirthDate = birthDate;
-                else
-                    MessageBox.Show("Incorrect Birth date");
+                    _db.Entry(author).State = EntityState.Modified;
+                    _db.SaveChanges();
 
-                db.Entry(author).State = EntityState.Modified;
-                db.SaveChanges();
-
-                MessageBox.Show($"Author {author.FullName} was updated");
+                    MessageBox.Show($"Author {author.FullName} was updated");
+                }                                         
             }
         }
 
@@ -214,16 +160,16 @@ namespace LibraryManager
                 if (converted == false)
                     return;
 
-                Author author = db.Authors.Find(id);
-                db.Authors.Remove(author);
-                db.SaveChanges();
+                Author author = _db.Authors.Find(id);
+                _db.Authors.Remove(author);
+                _db.SaveChanges();
 
                 // delete author from search result
-                if (_searchedAuthors.Find(a => a.Id == id) != null)
-                    _searchedAuthors.Remove(author);
+                if (SearchedAuthors.Find(a => a.Id == id) != null)
+                    SearchedAuthors.Remove(author);
 
                 bindingSourceAuthorSearch.DataSource = null;
-                bindingSourceAuthorSearch.DataSource = _searchedAuthors;
+                bindingSourceAuthorSearch.DataSource = SearchedAuthors;
 
                 MessageBox.Show($"Author {author.FullName} was deleted");
             }
@@ -238,11 +184,11 @@ namespace LibraryManager
             if (result == DialogResult.Cancel)
                 return;
 
-            _searchedBooks.Clear();
+            SearchedBooks.Clear();
 
-            _searchedBooks = await SearchBooks(bookSearchForm);
+            SearchedBooks = await SearchBooks(bookSearchForm);
 
-            bindingSourceBookSearch.DataSource = _searchedBooks;
+            bindingSourceBookSearch.DataSource = SearchedBooks;
             dataGridViewBooks.DataSource = bindingSourceBookSearch;
         }
 
@@ -250,7 +196,7 @@ namespace LibraryManager
         {
             return Task.Run(() => {
                 List<Book> searchResult = new List<Book>();
-                IQueryable<Book> bookIQuer = db.Books;
+                IQueryable<Book> bookIQuer = _db.Books;
                 if (!string.IsNullOrWhiteSpace(bookSearchForm.textBoxSearchTitle.Text))
                     bookIQuer = bookIQuer.Where(p => p.Title.Contains(bookSearchForm.textBoxSearchTitle.Text));
 
@@ -280,7 +226,7 @@ namespace LibraryManager
 
         private void btnAllBooks_Click(object sender, EventArgs e)
         {
-            dataGridViewBooks.DataSource = db.Books.Local.ToBindingList();
+            dataGridViewBooks.DataSource = _db.Books.Local.ToBindingList();
         }
 
         private async void btnAuthorSearch_Click(object sender, EventArgs e)
@@ -292,18 +238,18 @@ namespace LibraryManager
             if (result == DialogResult.Cancel)
                 return;
 
-            _searchedAuthors.Clear();
+            SearchedAuthors.Clear();
 
-            _searchedAuthors = await SearchAuthors(authorSearchForm);
+            SearchedAuthors = await SearchAuthors(authorSearchForm);
 
-            bindingSourceAuthorSearch.DataSource = _searchedAuthors;
+            bindingSourceAuthorSearch.DataSource = SearchedAuthors;
             dataGridViewAuthors.DataSource = bindingSourceAuthorSearch;
         }
 
         private Task<List<Author>> SearchAuthors(AuthorSearchForm authorSearchForm)
         {
             return Task.Run(() => {
-                IQueryable<Author> authorIQuer = db.Authors;
+                IQueryable<Author> authorIQuer = _db.Authors;
                 List<Author> searchedResult = new List<Author>();
                 if (!string.IsNullOrWhiteSpace(authorSearchForm.textBoxSearchFirstName.Text))
                     authorIQuer = authorIQuer.Where(p => p.FirstName.Contains(authorSearchForm.textBoxSearchFirstName.Text));
@@ -324,12 +270,12 @@ namespace LibraryManager
 
         private void btnAllAuthors_Click(object sender, EventArgs e)
         {
-            dataGridViewAuthors.DataSource = db.Authors.Local.ToBindingList();
+            dataGridViewAuthors.DataSource = _db.Authors.Local.ToBindingList();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            db.Dispose();
+            _db.Dispose();
         }
     }
 }

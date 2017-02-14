@@ -1,11 +1,12 @@
-﻿using System;
+﻿using LibraryManager;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManager
+namespace ClientManager
 {
     public class LibraryContext : DbContext
     {
@@ -19,7 +20,7 @@ namespace LibraryManager
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }        
         public DbSet<Borrow> Borrows { get; set; }
     }
 }

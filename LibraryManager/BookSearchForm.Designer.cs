@@ -153,7 +153,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "BookSearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BookSearchForm";
+            this.Text = "Book Search";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

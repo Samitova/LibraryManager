@@ -132,7 +132,7 @@
             this.Controls.Add(this.groupBoxSearchAuthor);
             this.Name = "AuthorSearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AuthorSearchForm";
+            this.Text = "Author Search";
             this.groupBoxSearchAuthor.ResumeLayout(false);
             this.groupBoxSearchAuthor.PerformLayout();
             this.ResumeLayout(false);

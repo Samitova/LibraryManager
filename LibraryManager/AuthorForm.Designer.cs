@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxAuthor = new System.Windows.Forms.GroupBox();
+            this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.textBoxBirthDate = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbBirthDate = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.lbSecondName = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.groupBoxAuthor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,13 @@
             this.groupBoxAuthor.TabStop = false;
             this.groupBoxAuthor.Text = "Author";
             // 
+            // textBoxSecondName
+            // 
+            this.textBoxSecondName.Location = new System.Drawing.Point(139, 89);
+            this.textBoxSecondName.Name = "textBoxSecondName";
+            this.textBoxSecondName.Size = new System.Drawing.Size(172, 24);
+            this.textBoxSecondName.TabIndex = 10;
+            // 
             // textBoxBirthDate
             // 
             this.textBoxBirthDate.Location = new System.Drawing.Point(139, 134);
@@ -67,13 +74,13 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(236, 193);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lbBirthDate
             // 
@@ -107,13 +114,13 @@
             // 
             // btnOK
             // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(139, 193);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // textBoxFirstName
             // 
@@ -122,13 +129,6 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(172, 24);
             this.textBoxFirstName.TabIndex = 3;
             // 
-            // textBoxSecondName
-            // 
-            this.textBoxSecondName.Location = new System.Drawing.Point(139, 89);
-            this.textBoxSecondName.Name = "textBoxSecondName";
-            this.textBoxSecondName.Size = new System.Drawing.Size(172, 24);
-            this.textBoxSecondName.TabIndex = 10;
-            // 
             // AuthorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,7 +136,8 @@
             this.ClientSize = new System.Drawing.Size(362, 276);
             this.Controls.Add(this.groupBoxAuthor);
             this.Name = "AuthorForm";
-            this.Text = "AuthorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Author";
             this.groupBoxAuthor.ResumeLayout(false);
             this.groupBoxAuthor.PerformLayout();
             this.ResumeLayout(false);
