@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxSearchAuthor = new System.Windows.Forms.GroupBox();
             this.labelBirthDate = new System.Windows.Forms.Label();
             this.lbSecondName = new System.Windows.Forms.Label();
             this.lbFirstName = new System.Windows.Forms.Label();
-            this.textBoxSearchAuthor = new System.Windows.Forms.TextBox();
-            this.textBoxSearchTitle = new System.Windows.Forms.TextBox();
-            this.textBoxSearchPublishing = new System.Windows.Forms.TextBox();
+            this.textBoxSearchSecondName = new System.Windows.Forms.TextBox();
+            this.textBoxSearchFirstName = new System.Windows.Forms.TextBox();
+            this.textBoxSearchBirth = new System.Windows.Forms.TextBox();
             this.btnAuthorSearchCancel = new System.Windows.Forms.Button();
             this.btnAuthorSearch = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxSearchAuthor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxSearchAuthor
             // 
-            this.groupBox1.Controls.Add(this.labelBirthDate);
-            this.groupBox1.Controls.Add(this.lbSecondName);
-            this.groupBox1.Controls.Add(this.lbFirstName);
-            this.groupBox1.Controls.Add(this.textBoxSearchAuthor);
-            this.groupBox1.Controls.Add(this.textBoxSearchTitle);
-            this.groupBox1.Controls.Add(this.textBoxSearchPublishing);
-            this.groupBox1.Controls.Add(this.btnAuthorSearchCancel);
-            this.groupBox1.Controls.Add(this.btnAuthorSearch);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 207);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
+            this.groupBoxSearchAuthor.Controls.Add(this.labelBirthDate);
+            this.groupBoxSearchAuthor.Controls.Add(this.lbSecondName);
+            this.groupBoxSearchAuthor.Controls.Add(this.lbFirstName);
+            this.groupBoxSearchAuthor.Controls.Add(this.textBoxSearchSecondName);
+            this.groupBoxSearchAuthor.Controls.Add(this.textBoxSearchFirstName);
+            this.groupBoxSearchAuthor.Controls.Add(this.textBoxSearchBirth);
+            this.groupBoxSearchAuthor.Controls.Add(this.btnAuthorSearchCancel);
+            this.groupBoxSearchAuthor.Controls.Add(this.btnAuthorSearch);
+            this.groupBoxSearchAuthor.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxSearchAuthor.Name = "groupBoxSearchAuthor";
+            this.groupBoxSearchAuthor.Size = new System.Drawing.Size(348, 207);
+            this.groupBoxSearchAuthor.TabIndex = 1;
+            this.groupBoxSearchAuthor.TabStop = false;
             // 
             // labelBirthDate
             // 
@@ -83,26 +83,26 @@
             this.lbFirstName.TabIndex = 17;
             this.lbFirstName.Text = "First name";
             // 
-            // textBoxSearchAuthor
+            // textBoxSearchSecondName
             // 
-            this.textBoxSearchAuthor.Location = new System.Drawing.Point(149, 72);
-            this.textBoxSearchAuthor.Name = "textBoxSearchAuthor";
-            this.textBoxSearchAuthor.Size = new System.Drawing.Size(172, 20);
-            this.textBoxSearchAuthor.TabIndex = 16;
+            this.textBoxSearchSecondName.Location = new System.Drawing.Point(149, 72);
+            this.textBoxSearchSecondName.Name = "textBoxSearchSecondName";
+            this.textBoxSearchSecondName.Size = new System.Drawing.Size(172, 20);
+            this.textBoxSearchSecondName.TabIndex = 16;
             // 
-            // textBoxSearchTitle
+            // textBoxSearchFirstName
             // 
-            this.textBoxSearchTitle.Location = new System.Drawing.Point(149, 35);
-            this.textBoxSearchTitle.Name = "textBoxSearchTitle";
-            this.textBoxSearchTitle.Size = new System.Drawing.Size(172, 20);
-            this.textBoxSearchTitle.TabIndex = 15;
+            this.textBoxSearchFirstName.Location = new System.Drawing.Point(149, 35);
+            this.textBoxSearchFirstName.Name = "textBoxSearchFirstName";
+            this.textBoxSearchFirstName.Size = new System.Drawing.Size(172, 20);
+            this.textBoxSearchFirstName.TabIndex = 15;
             // 
-            // textBoxSearchPublishing
+            // textBoxSearchBirth
             // 
-            this.textBoxSearchPublishing.Location = new System.Drawing.Point(149, 113);
-            this.textBoxSearchPublishing.Name = "textBoxSearchPublishing";
-            this.textBoxSearchPublishing.Size = new System.Drawing.Size(172, 20);
-            this.textBoxSearchPublishing.TabIndex = 12;
+            this.textBoxSearchBirth.Location = new System.Drawing.Point(149, 113);
+            this.textBoxSearchBirth.Name = "textBoxSearchBirth";
+            this.textBoxSearchBirth.Size = new System.Drawing.Size(172, 20);
+            this.textBoxSearchBirth.TabIndex = 12;
             // 
             // btnAuthorSearchCancel
             // 
@@ -128,26 +128,26 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 248);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(380, 234);
+            this.Controls.Add(this.groupBoxSearchAuthor);
             this.Name = "AuthorSearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AuthorSearchForm";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxSearchAuthor.ResumeLayout(false);
+            this.groupBoxSearchAuthor.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxSearchAuthor;
         private System.Windows.Forms.Label labelBirthDate;
         private System.Windows.Forms.Label lbSecondName;
         private System.Windows.Forms.Label lbFirstName;
-        protected internal System.Windows.Forms.TextBox textBoxSearchAuthor;
-        protected internal System.Windows.Forms.TextBox textBoxSearchTitle;
-        protected internal System.Windows.Forms.TextBox textBoxSearchPublishing;
+        protected internal System.Windows.Forms.TextBox textBoxSearchSecondName;
+        protected internal System.Windows.Forms.TextBox textBoxSearchFirstName;
+        protected internal System.Windows.Forms.TextBox textBoxSearchBirth;
         protected internal System.Windows.Forms.Button btnAuthorSearchCancel;
         protected internal System.Windows.Forms.Button btnAuthorSearch;
     }
