@@ -119,11 +119,11 @@
             // 
             // borrowBindingSource1
             // 
-            this.borrowBindingSource1.DataSource = typeof(LibraryManager.Borrow);
+            this.borrowBindingSource1.DataSource = typeof(DataManager.Borrow);
             // 
             // borrowBindingSource
             // 
-            this.borrowBindingSource.DataSource = typeof(LibraryManager.Borrow);
+            this.borrowBindingSource.DataSource = typeof(DataManager.Borrow);
             // 
             // BorrowHistoryForm
             // 

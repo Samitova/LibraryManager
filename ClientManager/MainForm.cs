@@ -1,12 +1,9 @@
-﻿using LibraryManager;
+﻿using DataManager;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,9 +37,7 @@ namespace ClientManager
             RegisterForm registerForm = new RegisterForm(_db);
 
             registerForm.Owner = this;
-            registerForm.Show();
-
-         
+            registerForm.Show();         
         }
 
         private void btnAllBooks_Click(object sender, EventArgs e)

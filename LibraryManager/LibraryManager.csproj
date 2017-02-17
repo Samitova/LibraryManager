@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Author.cs" />
     <Compile Include="AuthorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +67,6 @@
     <Compile Include="AuthorSearchForm.Designer.cs">
       <DependentUpon>AuthorSearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Book.cs" />
     <Compile Include="BookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,10 +79,6 @@
     <Compile Include="BookSearchForm.Designer.cs">
       <DependentUpon>BookSearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Borrow.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="LibraryContext.cs" />
-    <Compile Include="LibraryContextInitializer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataManager\DataManager.csproj">
+      <Project>{8905f66c-ce91-4b58-a71c-7f9d986ac163}</Project>
+      <Name>DataManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

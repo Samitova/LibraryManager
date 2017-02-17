@@ -67,8 +67,6 @@
     <Compile Include="BorrowHistoryForm.Designer.cs">
       <DependentUpon>BorrowHistoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LibraryContext.cs" />
-    <Compile Include="LibraryContextInitializer.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,9 +128,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibraryManager\LibraryManager.csproj">
-      <Project>{312bc27c-7eaf-444d-88d6-4f77589cfc94}</Project>
-      <Name>LibraryManager</Name>
+    <ProjectReference Include="..\DataManager\DataManager.csproj">
+      <Project>{8905f66c-ce91-4b58-a71c-7f9d986ac163}</Project>
+      <Name>DataManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

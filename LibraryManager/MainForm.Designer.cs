@@ -223,7 +223,7 @@
             // 
             // bookBindingSource
             // 
-            this.bookBindingSource.DataSource = typeof(LibraryManager.Book);
+            this.bookBindingSource.DataSource = typeof(DataManager.Book);
             // 
             // tabPageAuthors
             // 
@@ -345,7 +345,7 @@
             // 
             // authorBindingSource
             // 
-            this.authorBindingSource.DataSource = typeof(LibraryManager.Author);
+            this.authorBindingSource.DataSource = typeof(DataManager.Author);
             // 
             // MainForm
             // 

@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManager
+namespace DataManager
 {
-    public class Client
+    public class Author
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string FullName { get { return $"{FirstName} {SecondName}"; } }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public DateTime BirthDate { get; set; }
+        
+        public virtual ICollection<Book> Books { get; set; }
 
-        public virtual ICollection<Book> BorrowedBooks { get; set; }
-
-        public Client()
+        public Author()
         {
-            BorrowedBooks = new List<Book>();
+            Books = new List<Book>();
         }
 
         public override string ToString()
         {
             return FullName;
         }
+
     }
 }

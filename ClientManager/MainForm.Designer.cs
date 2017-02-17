@@ -288,7 +288,7 @@
             // 
             // bookAllBindingSource
             // 
-            this.bookAllBindingSource.DataSource = typeof(LibraryManager.Book);
+            this.bookAllBindingSource.DataSource = typeof(DataManager.Book);
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -327,7 +327,7 @@
             // 
             // bookClientBindingSource
             // 
-            this.bookClientBindingSource.DataSource = typeof(LibraryManager.Book);
+            this.bookClientBindingSource.DataSource = typeof(DataManager.Book);
             // 
             // MainForm
             // 
